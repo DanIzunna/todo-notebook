@@ -7,17 +7,19 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 
-export default function TodoItem({ item, todos, setTodos }) {
+export default function TodoItem({ item, todos, setTodos, darkMode }) {
+  // Toggle the 'done' state for this specific todo
   function handleToggle() {
     setTodos(
       todos.map((t) =>
-        t.timestamp === item.timestamp ? { ...t, done: !t.done } : t
+        t.id === item.id ? { ...t, done: !t.done } : t
       )
     );
   }
 
+  // Delete this todo
   function handleDelete() {
-    setTodos(todos.filter((t) => t.timestamp !== item.timestamp));
+    setTodos(todos.filter((t) => t.id !== item.id));
   }
 
   return (
@@ -25,28 +27,37 @@ export default function TodoItem({ item, todos, setTodos }) {
       <ListItem
         secondaryAction={
           <IconButton edge="end" onClick={handleDelete}>
-            <DeleteIcon />
+            <DeleteIcon sx={{ color: darkMode ? "#ccc" : "#555" }} />
           </IconButton>
         }
         disablePadding
         sx={{
           px: 2,
           py: 1,
-          "&:hover": { bgcolor: "#fff3c4" },
+          "&:hover": { bgcolor: darkMode ? "#333" : "#fff3c4" },
         }}
       >
-        <Checkbox checked={item.done} onChange={handleToggle} sx={{ mr: 2 }} />
+        <Checkbox
+          checked={item.done}
+          onChange={handleToggle}
+          sx={{ mr: 2 }}
+        />
         <ListItemText
           primary={item.name}
           secondary={
-            <Typography variant="caption" sx={{ color: "#555" }}>
-              Added: {item.timestamp}
+            <Typography
+              variant="caption"
+              sx={{ color: darkMode ? "#aaa" : "#555" }}
+            >
+              Added: {new Date(item.timestamp).toLocaleString()}
             </Typography>
           }
-          sx={{ textDecoration: item.done ? "line-through" : "none" }}
+          sx={{
+            textDecoration: item.done ? "line-through" : "none",
+          }}
         />
       </ListItem>
-      <Divider sx={{ borderColor: "#ddd" }} />
+      <Divider sx={{ borderColor: darkMode ? "#555" : "#ddd" }} />
     </>
   );
 }
