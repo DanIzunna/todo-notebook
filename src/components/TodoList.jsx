@@ -4,10 +4,12 @@ import Typography from "@mui/material/Typography";
 import TodoItem from "./TodoItem";
 
 export default function TodoList({ todos, setTodos, darkMode }) {
+  // Sort todos: incomplete first, completed last
   const sortedTodos = todos
     .slice()
     .sort((a, b) => Number(a.done) - Number(b.done));
 
+  // Empty state when no todos exist
   if (sortedTodos.length === 0) {
     return (
       <Typography
@@ -36,7 +38,7 @@ export default function TodoList({ todos, setTodos, darkMode }) {
       <List>
         {sortedTodos.map((item) => (
           <TodoItem
-            key={item.timestamp}
+            key={item.id}           // ✅ Use unique id
             item={item}
             todos={todos}
             setTodos={setTodos}
