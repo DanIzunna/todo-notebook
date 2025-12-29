@@ -33,7 +33,7 @@ Copy code
 npm start
 The app will be available at http://localhost:3000.
 
-Deployment on Vercel (Recommended)
+## Deployment on Vercel (Recommended)
 Build the app:
 
 bash
@@ -47,7 +47,7 @@ Vercel will automatically detect React. Build command: npm run build, output dir
 
 Click Deploy. Your app will be live at https://todo-notebook.vercel.app (or a Vercel-generated URL).
 
-Tech Stack
+## Tech Stack
 React – Frontend library
 
 Material UI (MUI) – Modern, responsive UI components
@@ -56,16 +56,6 @@ JavaScript (ES6+)
 
 localStorage – Data persistence
 
-Portfolio Highlights
-This project demonstrates:
-
-React state management with hooks (useState, useEffect)
-
-Material UI for modern, responsive design
-
-Frontend best practices: clean components, reusable design, local persistence
-
-Deployment skills: Vercel hosting and GitHub integration
 
 Author
 Nwahiri Daniel – GitHub
