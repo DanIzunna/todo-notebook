@@ -10,7 +10,17 @@ export default function Form({ todos, setTodos }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!todo.name.trim()) return;
-    setTodos([...todos, { ...todo, timestamp: new Date().toLocaleString() }]);
+
+    setTodos([
+      ...todos,
+      {
+        id: crypto.randomUUID(), // ✅ unique id for each todo
+        name: todo.name,
+        done: false,
+        timestamp: new Date().toISOString(), // for display
+      },
+    ]);
+
     setTodo({ name: "", done: false });
   }
 
@@ -24,6 +34,7 @@ export default function Form({ todos, setTodos }) {
         flexDirection: { xs: "column", sm: "row" },
         alignItems: "center",
         width: "100%",
+        mb: 2,
       }}
     >
       <TextField
